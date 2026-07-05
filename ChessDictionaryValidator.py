@@ -1,36 +1,30 @@
-def isValidChessBoard(board):
-    numBlackKings = 0
-    numWhiteKings = 0
-    numWhitePieces = 0
-    numBlackPieces = 0
+def isValidChessBoard(borad):
+    whiteking=0
+    blackking=0
+    blackpiece=0
+    whitepiece=0
 
-    for square, piece in board.items():
-        # Count pieces
-        if piece[0] == 'w':
-            numWhitePieces += 1
-        elif piece[0] == 'b':
-            numBlackPieces += 1
+    for place,piece in borad.items():
+        if piece[0]=='w':
+            whitepiece+=1
+        elif piece[0]=='b':
+            blackpiece+=1
+        
+        if piece =='wK':
+            whiteking+=1
+        elif piece =='bK':
+            blackking+=1
 
-        # Count kings
-        if piece == 'wK':
-            numWhiteKings += 1
-        elif piece == 'bK':
-            numBlackKings += 1
-
-        # Check piece type is valid
-        if piece[1] not in ('K', 'Q', 'R', 'B', 'N', 'P'):
+        if piece[1] not in ('K','B','Q','N','P','R'):
             return False
-
-        # Check square is a valid coordinate
-        if square[0] not in 'abcdefgh' or square[1] not in '12345678':
+        
+        if place[0] not in 'abcdefgh' or place[1] not in '12345678':
             return False
-
-    # Each side needs exactly one king
-    if numWhiteKings != 1 or numBlackKings != 1:
+        
+    if whiteking!=1 or blackking!=1:
         return False
-
-    # Max 16 pieces per side
-    if numWhitePieces > 16 or numBlackPieces > 16:
+    
+    if whitepiece > 16 or blackpiece > 16:
         return False
-
+    
     return True
